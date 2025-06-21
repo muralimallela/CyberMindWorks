@@ -32,7 +32,7 @@ export default function Home() {
                   <JobFilters filters={filters} setFilters={setFilters} />
           </div>
         </div>
-        <div className="mt-54 px-6 py-6">
+        <div className="px-6 py-6">
           <JobsPage filters={filters} />
         </div>
       </main>

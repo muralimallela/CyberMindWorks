@@ -80,42 +80,27 @@ export default function JobsPage({ filters }: JobsPageProps) {
 
   if (loading) {
     return (
-      <div className="flex mt-56 w-full h-56 items-center justify-center">
-        <div className="loader">
-          <div className="box box0">
-            <div></div>
-          </div>
-          <div className="box box1">
-            <div></div>
-          </div>
-          <div className="box box2">
-            <div></div>
-          </div>
-          <div className="box box3">
-            <div></div>
-          </div>
-          <div className="box box4">
-            <div></div>
-          </div>
-          <div className="box box5">
-            <div></div>
-          </div>
-          <div className="box box6">
-            <div></div>
-          </div>
-          <div className="box box7">
-            <div></div>
-          </div>
-          <div className="ground">
-            <div></div>
-          </div>
+      <div className="flex  w-full  items-center justify-center border-4  border-amber-200">
+        <div className="spinner center">
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
+          <div className="spinner-blade"></div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8">
+    <div className="grid grid-cols-1 mt-50 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8">
       {filteredJobs.map((job) => (
         <JobCard
           key={job.id}
