@@ -38,11 +38,13 @@ const formatDescription = (desc: string): string[] =>
 
 export default function JobsPage({ filters }: JobsPageProps) {
   const [jobs, setJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetch("/api/jobs")
       .then((res) => res.json())
-      .then((data) => setJobs(data));
+      .then((data) => setJobs(data))
+      .finally(() => setLoading(false));
   }, []);
 
   const filteredJobs = jobs.filter((job) => {
@@ -66,9 +68,6 @@ export default function JobsPage({ filters }: JobsPageProps) {
     const now = new Date();
     const posted = new Date(createdAt);
     const diffMs = now.getTime() - posted.getTime();
-    console.log(`Time difference in milliseconds: ${diffMs}`);
-    console.log(`Posted at: ${posted.toISOString()}`);
-    console.log(`Current time: ${now.toISOString()}`);
     const diffMinutes = Math.floor(diffMs / (1000 * 60));
     const diffHours = Math.floor(diffMinutes / 60);
     const diffDays = Math.floor(diffHours / 24);
@@ -78,6 +77,42 @@ export default function JobsPage({ filters }: JobsPageProps) {
     if (diffHours < 24) return `${diffHours}h Ago`;
     return `${diffDays}d Ago`;
   };
+
+  if (loading) {
+    return (
+      <div className="flex mt-56 w-full h-56 items-center justify-center">
+        <div className="loader">
+          <div className="box box0">
+            <div></div>
+          </div>
+          <div className="box box1">
+            <div></div>
+          </div>
+          <div className="box box2">
+            <div></div>
+          </div>
+          <div className="box box3">
+            <div></div>
+          </div>
+          <div className="box box4">
+            <div></div>
+          </div>
+          <div className="box box5">
+            <div></div>
+          </div>
+          <div className="box box6">
+            <div></div>
+          </div>
+          <div className="box box7">
+            <div></div>
+          </div>
+          <div className="ground">
+            <div></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8">
