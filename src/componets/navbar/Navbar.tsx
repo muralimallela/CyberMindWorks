@@ -1,0 +1,90 @@
+"use client";
+
+import React, { useState } from "react";
+import Image from "next/image";
+import { Modal } from "@mantine/core";
+import JobCreationModal from "../JobCreationModal";
+import localFont from "next/font/local";
+
+const satoshiVariable = localFont({
+  src: "./../../app/fonts/Satoshi-Variable.ttf",
+  display: "swap",
+  variable: "--font-satoshi-variable",
+});
+
+const Navbar: React.FC = () => {
+  const [opened, setOpened] = useState(false);
+
+  return (
+    <>
+      <nav
+        className={`${satoshiVariable.className} bg-white shadow-[0px_0px_20px_#7F7F7F26] border border-[#FCFCFC] rounded-[112px] px-8 py-4 flex items-center justify-between mx-auto w-fit`}
+      >
+        {/* Logo */}
+        <div className="flex items-center">
+          <Image src="/cmwlogo.png" alt="Logo" width={45} height={45} />
+        </div>
+
+        {/* Navigation Links */}
+        <ul className="flex ml-6 text-gray-800 font-medium text-[16px]">
+          {[
+            "Home",
+            "Find Jobs",
+            "Find Talents",
+            "About us",
+            "Testimonials",
+          ].map((item) => (
+            <li
+              key={item}
+              className="navigationLinks h-[48px] w-[120px] flex items-center justify-center hover:text-purple-600 transition-colors"
+            >
+              <a href="#" className="text-center w-full">
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Create Jobs Button */}
+        <div className="ml-5">
+          <div className="group relative h-[38px] w-[133px] overflow-hidden transition-all duration-300">
+            <button
+              className="bg-gradient-to-b from-[#A128FF] to-[#6100AD] text-white px-6 rounded-[30px] font-semibold h-full w-full relative"
+              onClick={() => setOpened(true)}
+            >
+              <span className="absolute inset-0 flex items-center justify-center transition-all duration-300 group-hover:-translate-y-full">
+                Create Jobs
+              </span>
+              <span className="absolute inset-0 flex items-center justify-center translate-y-full opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                Login
+              </span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Modal outside nav to avoid layout issues */}
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        centered
+        size="lg"
+        radius="md"
+        withCloseButton={false} // 👈 Hides the close (X) icon
+        classNames={{ body: "px-6 pb-6 pt-2 " }}
+      >
+        {/* Custom Title */}
+        <div className={satoshiVariable.className}>
+          <h2 className="text-2xl font-bold text-center mb-4">
+            Create Job Opening
+          </h2>
+        </div>
+
+        {/* Job creation form */}
+        <JobCreationModal />
+      </Modal>
+    </>
+  );
+};
+
+export default Navbar;

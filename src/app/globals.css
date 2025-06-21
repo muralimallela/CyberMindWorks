@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Variable.woff2') format('woff2');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+
+body {
+  font-family: 'Satoshi';
+}
+
+.navigationLinks {
+  transition: all 0.2s;
+  padding: 5px 5px;
+  border-radius: 12px;
+}
+.navigationLinks:hover {
+  box-shadow: rgba(120, 108, 108, 0.1) 0px 4px 3px;
+  transform: translate(3px, 3px);
+}
+
