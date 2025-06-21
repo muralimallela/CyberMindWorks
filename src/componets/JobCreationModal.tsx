@@ -57,8 +57,15 @@ export default function JobCreationForm() {
       if (res.ok) {
         const responseData = await res.json();
         console.log("Job created:", responseData);
-        toast("Job posted successfully", {
+        toast.success("Job posted successfully", {
           position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
         });
         showNotification({
           title: "Success",
@@ -89,7 +96,7 @@ export default function JobCreationForm() {
 
   return (
     <div className={satoshiVariable.className}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 overflow-hidden">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex flex-col group">
             <label className="text-lg text-[#636363] font-semibold mb-1 group-focus-within:text-black">

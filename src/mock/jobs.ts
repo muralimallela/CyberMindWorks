@@ -1,4 +1,3 @@
-// mock/jobs.ts
 export const jobData = [
   {
     id: 1,

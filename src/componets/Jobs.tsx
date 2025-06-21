@@ -30,7 +30,11 @@ interface JobsPageProps {
 const formatSalary = (min: number) => `${Math.round(min / 100000)} LPA`;
 
 const formatDescription = (desc: string): string[] =>
-  desc.split("\n").map((line) => line.trim()).filter(Boolean);
+  desc
+    .replace(/\\n/g, "\n")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
 
 export default function JobsPage({ filters }: JobsPageProps) {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -74,8 +78,6 @@ export default function JobsPage({ filters }: JobsPageProps) {
     if (diffHours < 24) return `${diffHours}h Ago`;
     return `${diffDays}d Ago`;
   };
-  
-
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8">

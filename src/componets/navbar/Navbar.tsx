@@ -5,12 +5,21 @@ import Image from "next/image";
 import { Modal } from "@mantine/core";
 import JobCreationModal from "../JobCreationModal";
 import localFont from "next/font/local";
+import Link from "next/link";
 
 const satoshiVariable = localFont({
   src: "./../../app/fonts/Satoshi-Variable.ttf",
   display: "swap",
   variable: "--font-satoshi-variable",
 });
+
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Find Jobs", href: "#" },
+  { label: "Find Talents", href: "#" },
+  { label: "About us", href: "#" },
+  { label: "Testimonials", href: "#" },
+];
 
 const Navbar: React.FC = () => {
   const [opened, setOpened] = useState(false);
@@ -27,20 +36,14 @@ const Navbar: React.FC = () => {
 
         {/* Navigation Links */}
         <ul className="flex ml-6 text-gray-800 font-medium text-[16px]">
-          {[
-            "Home",
-            "Find Jobs",
-            "Find Talents",
-            "About us",
-            "Testimonials",
-          ].map((item) => (
+          {navItems.map((item) => (
             <li
-              key={item}
+              key={item.label}
               className="navigationLinks h-[48px] w-[120px] flex items-center justify-center hover:text-purple-600 transition-colors"
             >
-              <a href="#" className="text-center w-full">
-                {item}
-              </a>
+              <Link href={item.href} className="text-center w-full">
+                {item.label}
+              </Link>
             </li>
           ))}
         </ul>
@@ -63,24 +66,22 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* Modal outside nav to avoid layout issues */}
+      {/* Modal */}
       <Modal
         opened={opened}
         onClose={() => setOpened(false)}
         centered
         size="lg"
         radius="md"
-        withCloseButton={false} // 👈 Hides the close (X) icon
+        withCloseButton={false}
         classNames={{ body: "px-6 pb-6 pt-2 " }}
       >
-        {/* Custom Title */}
         <div className={satoshiVariable.className}>
           <h2 className="text-2xl font-bold text-center mb-4">
             Create Job Opening
           </h2>
         </div>
 
-        {/* Job creation form */}
         <JobCreationModal />
       </Modal>
     </>
